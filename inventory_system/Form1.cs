@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -24,6 +25,7 @@ namespace inventory_system
 
             //applies font
             ApplyCustomFontToForm(this);
+            
 
         }
 
@@ -58,7 +60,8 @@ namespace inventory_system
         private Font LoadCustomFont(float fontSize)
         {
             // Replace "path\to\your\custom\font.ttf" with the actual path to your custom font file
-            string pathToFontFile = @"C:\Users\DELL\Documents\VP project\inventory_system\inventory_system\Noyh-Bold.ttf";
+            string fontFileName = "Noyh-Bold.ttf";
+            string pathToFontFile = Path.Combine(Application.StartupPath, fontFileName);
             PrivateFontCollection privateFontCollection = new PrivateFontCollection();
             privateFontCollection.AddFontFile(pathToFontFile);
             return new Font(privateFontCollection.Families[0], fontSize);
@@ -91,7 +94,38 @@ namespace inventory_system
         {
 
         }
-        
 
+        private void round_button1_Click(object sender, EventArgs e)
+        {
+            inventoryPanel.Visible = true;
+            inventorySidePanel.Visible = true;
+
+            reportPanel.Visible = false;
+            reportSidePanel.Visible = false;
+            ordersPanel.Visible = false;
+            ordersSidePanel.Visible = false;
+        }
+
+        private void round_button3_Click(object sender, EventArgs e)
+        {
+            reportPanel.Visible = true;
+            reportSidePanel.Visible = true;
+
+            inventoryPanel.Visible = false;
+            inventorySidePanel.Visible = false;
+            ordersPanel.Visible = false;
+            ordersSidePanel.Visible = false;
+        }
+
+        private void ordersButton_Click(object sender, EventArgs e)
+        {
+            ordersPanel.Visible = true;
+            ordersSidePanel.Visible = true;
+
+            reportPanel.Visible = false;
+            reportSidePanel.Visible = false;
+            inventoryPanel.Visible = false;
+            inventorySidePanel.Visible = false;
+        }
     }
 }
