@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +17,7 @@ namespace inventory_system
 {
     public partial class Form1 : Form
     {
+        
         public Form1()
         {
             InitializeComponent();
@@ -23,49 +26,10 @@ namespace inventory_system
             //DPI fix
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 
-            //applies font
-            ApplyCustomFontToForm(this);
             
-
         }
 
-        //Adds custom font
-        // Assuming you've added your custom font file to your project
-        // and set its Build Action to "Content" and Copy to Output Directory to "Copy if newer"
-
-        // Load the custom font from the file
-        private void ApplyCustomFontToForm(Control control)
-        {
-            /*if (control.Name == "specificControlName") // Change "specificControlName" to the name of your specific control
-            {
-                control.Font = LoadCustomFont(14); // Set custom font size for the specific control
-            }
-            if (control is Button)
-            {
-                control.Font = LoadCustomFont(20); // Set font size to 14 for Buttons and Labels
-            }
-            else
-            {
-                control.Font = LoadCustomFont(12); // Set default font size to 12 for other controls
-            }*/
-
-            //remove the line below is the above conditions are applied
-            control.Font = LoadCustomFont(12);
-            foreach (Control childControl in control.Controls)
-            {
-                ApplyCustomFontToForm(childControl); // Recursively apply font to child controls
-            }
-        }
-
-        private Font LoadCustomFont(float fontSize)
-        {
-            // Replace "path\to\your\custom\font.ttf" with the actual path to your custom font file
-            string fontFileName = "Noyh-Bold.ttf";
-            string pathToFontFile = Path.Combine(Application.StartupPath, fontFileName);
-            PrivateFontCollection privateFontCollection = new PrivateFontCollection();
-            privateFontCollection.AddFontFile(pathToFontFile);
-            return new Font(privateFontCollection.Families[0], fontSize);
-        }
+        
 
 
         //code to fix DPI issue
@@ -126,6 +90,21 @@ namespace inventory_system
             reportSidePanel.Visible = false;
             inventoryPanel.Visible = false;
             inventorySidePanel.Visible = false;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //changes cursor
+            //string parentDirectory = Directory.GetParent(Application.StartupPath).Parent.FullName;
+            //string cursorFilePath = Path.Combine(parentDirectory, "cursor.cur");
+            //this.Cursor = new Cursor(cursorFilePath);
+            //C:\Users\DELL\Documents\VP project\inventory_system\inventory_system\normal.cur
+
+        }
+
+        private void newOrder_button_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
