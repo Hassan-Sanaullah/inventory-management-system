@@ -23,7 +23,9 @@ namespace inventory_system
 
             //roundedPanel2.Visible = false;
         }
-
+        private void loginForm_Load(object sender, EventArgs e)
+        {
+        }
         private void newAccountLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             signupBackground.Visible = true;
@@ -38,6 +40,11 @@ namespace inventory_system
             signupBackground.Visible = false;
             registerPanel.Visible = false;
             loginPanel.Visible = true;
+        }
+
+        private void loginForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
         }
     }
 }

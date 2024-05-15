@@ -61,12 +61,12 @@ namespace inventory_system.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] Noyh_Bold {
+        internal static System.Drawing.Bitmap signup_background {
             get {
-                object obj = ResourceManager.GetObject("Noyh_Bold", resourceCulture);
-                return ((byte[])(obj));
+                object obj = ResourceManager.GetObject("signup_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
