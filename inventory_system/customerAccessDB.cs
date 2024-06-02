@@ -263,70 +263,99 @@ namespace inventory_system
             try
             {
                 OpenConnection();
-                SqlTransaction transaction = connection.BeginTransaction();
-
-                // Insert into orders table
-                string insertOrderQuery = "INSERT INTO orders (user_id, total_amount, order_date, order_status) OUTPUT INSERTED.order_id VALUES (@UserId, 0, GETDATE(), 'Pending')";
-                SqlCommand insertOrderCommand = new SqlCommand(insertOrderQuery, connection, transaction);
-                insertOrderCommand.Parameters.AddWithValue("@UserId", userId);
-
-                int orderId = (int)insertOrderCommand.ExecuteScalar();
-
-                // Fetch all cart items for the user
-                string selectCartItemsQuery = "SELECT * FROM cart WHERE user_id = @UserId";
-                SqlCommand selectCartItemsCommand = new SqlCommand(selectCartItemsQuery, connection, transaction);
-                selectCartItemsCommand.Parameters.AddWithValue("@UserId", userId);
-
-                List<CartItem> cartItems = new List<CartItem>();
-                using (SqlDataReader reader = selectCartItemsCommand.ExecuteReader())
+                using (SqlTransaction transaction = connection.BeginTransaction())
                 {
-                    while (reader.Read())
+                    try
                     {
-                        cartItems.Add(new CartItem
+                        // Insert into orders table
+                        string insertOrderQuery = "INSERT INTO orders (user_id, total_amount, order_date, order_status) OUTPUT INSERTED.order_id VALUES (@UserId, 0, GETDATE(), 'Pending')";
+                        using (SqlCommand insertOrderCommand = new SqlCommand(insertOrderQuery, connection, transaction))
                         {
-                            CartId = (int)reader["cart_id"],
-                            ProductId = (int)reader["product_id"],
-                            Quantity = (int)reader["quantity"],
-                            UnitPrice = (decimal)reader["unit_price"],
-                            TotalPrice = (decimal)reader["total_price"]
-                        });
+                            insertOrderCommand.Parameters.AddWithValue("@UserId", userId);
+                            int orderId = (int)insertOrderCommand.ExecuteScalar();
+
+                            // Fetch all cart items for the user
+                            string selectCartItemsQuery = "SELECT * FROM cart WHERE user_id = @UserId";
+                            using (SqlCommand selectCartItemsCommand = new SqlCommand(selectCartItemsQuery, connection, transaction))
+                            {
+                                selectCartItemsCommand.Parameters.AddWithValue("@UserId", userId);
+
+                                List<CartItem> cartItems = new List<CartItem>();
+                                using (SqlDataReader reader = selectCartItemsCommand.ExecuteReader())
+                                {
+                                    while (reader.Read())
+                                    {
+                                        cartItems.Add(new CartItem
+                                        {
+                                            CartId = (int)reader["cart_id"],
+                                            ProductId = (int)reader["product_id"],
+                                            Quantity = (int)reader["quantity"],
+                                            UnitPrice = (decimal)reader["unit_price"],
+                                            TotalPrice = (decimal)reader["total_price"]
+                                        });
+                                    }
+                                }
+
+                                // Insert each cart item into order_items table and calculate total order amount
+                                decimal totalAmount = 0;
+                                foreach (CartItem item in cartItems)
+                                {
+                                    string insertOrderItemQuery = "INSERT INTO order_items (order_id, product_id, quantity, unit_price, total_price) VALUES (@OrderId, @ProductId, @Quantity, @UnitPrice, @TotalPrice)";
+                                    using (SqlCommand insertOrderItemCommand = new SqlCommand(insertOrderItemQuery, connection, transaction))
+                                    {
+                                        insertOrderItemCommand.Parameters.AddWithValue("@OrderId", orderId);
+                                        insertOrderItemCommand.Parameters.AddWithValue("@ProductId", item.ProductId);
+                                        insertOrderItemCommand.Parameters.AddWithValue("@Quantity", item.Quantity);
+                                        insertOrderItemCommand.Parameters.AddWithValue("@UnitPrice", item.UnitPrice);
+                                        insertOrderItemCommand.Parameters.AddWithValue("@TotalPrice", item.TotalPrice);
+                                        insertOrderItemCommand.ExecuteNonQuery();
+                                    }
+
+                                    // Update the stock quantity in products table
+                                    string updateProductStockQuery = "UPDATE products SET stock_quantity = stock_quantity - @Quantity WHERE product_id = @ProductId";
+                                    using (SqlCommand updateProductStockCommand = new SqlCommand(updateProductStockQuery, connection, transaction))
+                                    {
+                                        updateProductStockCommand.Parameters.AddWithValue("@Quantity", item.Quantity);
+                                        updateProductStockCommand.Parameters.AddWithValue("@ProductId", item.ProductId);
+                                        updateProductStockCommand.ExecuteNonQuery();
+                                    }
+
+                                    totalAmount += item.TotalPrice;
+                                }
+
+                                // Update the total_amount in orders table
+                                string updateOrderQuery = "UPDATE orders SET total_amount = @TotalAmount WHERE order_id = @OrderId";
+                                using (SqlCommand updateOrderCommand = new SqlCommand(updateOrderQuery, connection, transaction))
+                                {
+                                    updateOrderCommand.Parameters.AddWithValue("@TotalAmount", totalAmount);
+                                    updateOrderCommand.Parameters.AddWithValue("@OrderId", orderId);
+                                    updateOrderCommand.ExecuteNonQuery();
+                                }
+
+                                // Clear the cart for the user
+                                string clearCartQuery = "DELETE FROM cart WHERE user_id = @UserId";
+                                using (SqlCommand clearCartCommand = new SqlCommand(clearCartQuery, connection, transaction))
+                                {
+                                    clearCartCommand.Parameters.AddWithValue("@UserId", userId);
+                                    clearCartCommand.ExecuteNonQuery();
+                                }
+
+                                // Commit the transaction
+                                transaction.Commit();
+                                isSuccess = true;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        errorMessage = "Error during checkout: " + ex.Message;
+                    }
+                    finally
+                    {
+                        CloseConnection();
                     }
                 }
-
-                // Insert each cart item into order_items table and calculate total order amount
-                decimal totalAmount = 0;
-                foreach (CartItem item in cartItems)
-                {
-                    string insertOrderItemQuery = "INSERT INTO order_items (order_id, product_id, quantity, unit_price, total_price) VALUES (@OrderId, @ProductId, @Quantity, @UnitPrice, @TotalPrice)";
-                    SqlCommand insertOrderItemCommand = new SqlCommand(insertOrderItemQuery, connection, transaction);
-                    insertOrderItemCommand.Parameters.AddWithValue("@OrderId", orderId);
-                    insertOrderItemCommand.Parameters.AddWithValue("@ProductId", item.ProductId);
-                    insertOrderItemCommand.Parameters.AddWithValue("@Quantity", item.Quantity);
-                    insertOrderItemCommand.Parameters.AddWithValue("@UnitPrice", item.UnitPrice);
-                    insertOrderItemCommand.Parameters.AddWithValue("@TotalPrice", item.TotalPrice);
-
-                    insertOrderItemCommand.ExecuteNonQuery();
-                    totalAmount += item.TotalPrice;
-                }
-
-                // Update the total_amount in orders table
-                string updateOrderQuery = "UPDATE orders SET total_amount = @TotalAmount WHERE order_id = @OrderId";
-                SqlCommand updateOrderCommand = new SqlCommand(updateOrderQuery, connection, transaction);
-                updateOrderCommand.Parameters.AddWithValue("@TotalAmount", totalAmount);
-                updateOrderCommand.Parameters.AddWithValue("@OrderId", orderId);
-
-                updateOrderCommand.ExecuteNonQuery();
-
-                // Clear the cart for the user
-                string clearCartQuery = "DELETE FROM cart WHERE user_id = @UserId";
-                SqlCommand clearCartCommand = new SqlCommand(clearCartQuery, connection, transaction);
-                clearCartCommand.Parameters.AddWithValue("@UserId", userId);
-
-                clearCartCommand.ExecuteNonQuery();
-
-                // Commit the transaction
-                transaction.Commit();
-                isSuccess = true;
             }
             catch (Exception ex)
             {

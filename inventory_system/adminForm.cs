@@ -43,6 +43,9 @@ namespace inventory_system
 
             FetchInventoryGridViewData();
             FetchOrdersGridViewData();
+
+            DateTime selectedDate = dateTimePicker1.Value;
+            FetchSalesDataForDate(selectedDate);
             //string errorMessage;
             //userID = accessDB.GetUserIdByEmail(loginForm.email, out errorMessage);
 
@@ -236,7 +239,8 @@ namespace inventory_system
             chart1.Series["Total Revenue"].Points.Clear();
             foreach (KeyValuePair<DateTime, decimal> entry in revenueByDay)
             {
-                chart1.Series["Total Revenue"].Points.AddXY(entry.Key, (double)entry.Value);
+                string label = entry.Key.ToString("dd-MM");
+                chart1.Series["Total Revenue"].Points.AddXY(label, (double)entry.Value);
             }
         }
 

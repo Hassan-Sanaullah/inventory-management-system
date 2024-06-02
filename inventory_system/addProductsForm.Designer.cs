@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addProductsForm));
             this.tb1 = new System.Windows.Forms.TextBox();
             this.Label1 = new System.Windows.Forms.Label();
             this.tb2 = new System.Windows.Forms.TextBox();
@@ -46,7 +47,6 @@
             // 
             // tb1
             // 
-            this.tb1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tb1.BackColor = System.Drawing.Color.White;
             this.tb1.Font = new System.Drawing.Font("Noyh ", 11F);
             this.tb1.ForeColor = System.Drawing.SystemColors.Desktop;
@@ -57,7 +57,6 @@
             // 
             // Label1
             // 
-            this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.Label1.AutoSize = true;
             this.Label1.Font = new System.Drawing.Font("Noyh ", 11F);
             this.Label1.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -69,7 +68,6 @@
             // 
             // tb2
             // 
-            this.tb2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tb2.BackColor = System.Drawing.Color.White;
             this.tb2.Font = new System.Drawing.Font("Noyh ", 11F);
             this.tb2.ForeColor = System.Drawing.SystemColors.Desktop;
@@ -80,7 +78,6 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Noyh ", 11F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -92,7 +89,6 @@
             // 
             // tb3
             // 
-            this.tb3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tb3.BackColor = System.Drawing.Color.White;
             this.tb3.Font = new System.Drawing.Font("Noyh ", 11F);
             this.tb3.ForeColor = System.Drawing.SystemColors.Desktop;
@@ -103,7 +99,6 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Noyh ", 11F);
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -115,7 +110,6 @@
             // 
             // addButton
             // 
-            this.addButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.addButton.BorderColor = System.Drawing.Color.Gray;
             this.addButton.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(34)))));
             this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -135,7 +129,6 @@
             // 
             // tb4
             // 
-            this.tb4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tb4.BackColor = System.Drawing.Color.White;
             this.tb4.Font = new System.Drawing.Font("Noyh ", 11F);
             this.tb4.ForeColor = System.Drawing.SystemColors.Desktop;
@@ -146,7 +139,6 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Noyh ", 11F);
             this.label5.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -158,7 +150,6 @@
             // 
             // tb5
             // 
-            this.tb5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tb5.BackColor = System.Drawing.Color.White;
             this.tb5.Font = new System.Drawing.Font("Noyh ", 11F);
             this.tb5.ForeColor = System.Drawing.SystemColors.Desktop;
@@ -169,7 +160,6 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Noyh ", 11F);
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -181,7 +171,6 @@
             // 
             // browseButton
             // 
-            this.browseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.browseButton.BorderColor = System.Drawing.Color.Gray;
             this.browseButton.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(34)))));
             this.browseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -227,9 +216,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tb1);
             this.Controls.Add(this.Label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "addProductsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "addProduct";
+            this.Text = "Add Product";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

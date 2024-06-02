@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(productDetailsForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label0 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             // 
             // label0
             // 
-            this.label0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label0.AutoSize = true;
             this.label0.Font = new System.Drawing.Font("Noyh ", 11F);
             this.label0.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -62,7 +62,6 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Noyh ", 11F);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -74,7 +73,6 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Noyh ", 11F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -86,7 +84,6 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Noyh ", 11F);
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -124,7 +121,6 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Noyh ", 11F);
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
@@ -148,6 +144,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label0);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "productDetailsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Product Details";

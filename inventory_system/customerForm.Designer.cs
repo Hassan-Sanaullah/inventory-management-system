@@ -49,6 +49,7 @@
             this.ordersButton = new ePOSOne.btnProduct.Round_button();
             this.productsButton = new ePOSOne.btnProduct.Round_button();
             this.ordersPanel = new inventory_system.RoundedPanel();
+            this.label5 = new System.Windows.Forms.Label();
             this.ordersGridView = new System.Windows.Forms.DataGridView();
             this.cartSidePanel = new inventory_system.RoundedPanel();
             this.cardInfoTB4 = new System.Windows.Forms.TextBox();
@@ -79,14 +80,13 @@
             this.label18 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.cartPanel = new inventory_system.RoundedPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.totalLabel = new System.Windows.Forms.Label();
             this.cartGridView = new System.Windows.Forms.DataGridView();
             this.removeCartButton = new ePOSOne.btnProduct.Round_button();
             this.productsPanel = new inventory_system.RoundedPanel();
-            this.productsFlowLayout = new System.Windows.Forms.FlowLayoutPanel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.productsFlowLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.accountToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.topPanel.SuspendLayout();
@@ -266,8 +266,23 @@
             this.ordersPanel.Size = new System.Drawing.Size(1109, 550);
             this.ordersPanel.TabIndex = 22;
             // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Noyh ", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(218)))), ((int)(((byte)(124)))));
+            this.label5.Location = new System.Drawing.Point(497, 11);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(102, 36);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Orders";
+            // 
             // ordersGridView
             // 
+            this.ordersGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ordersGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(38)))), ((int)(((byte)(45)))));
             this.ordersGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -330,6 +345,7 @@
             // 
             // cardInfoTB4
             // 
+            this.cardInfoTB4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cardInfoTB4.Font = new System.Drawing.Font("Noyh ", 11F);
             this.cardInfoTB4.Location = new System.Drawing.Point(30, 370);
             this.cardInfoTB4.Name = "cardInfoTB4";
@@ -342,7 +358,7 @@
             this.cardInfoLabel4.AutoSize = true;
             this.cardInfoLabel4.Font = new System.Drawing.Font("Noyh ", 11F);
             this.cardInfoLabel4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.cardInfoLabel4.Location = new System.Drawing.Point(29, 341);
+            this.cardInfoLabel4.Location = new System.Drawing.Point(29, 347);
             this.cardInfoLabel4.Name = "cardInfoLabel4";
             this.cardInfoLabel4.Size = new System.Drawing.Size(43, 21);
             this.cardInfoLabel4.TabIndex = 29;
@@ -370,6 +386,7 @@
             // 
             // cardInfoTB3
             // 
+            this.cardInfoTB3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cardInfoTB3.Font = new System.Drawing.Font("Noyh ", 11F);
             this.cardInfoTB3.Location = new System.Drawing.Point(31, 305);
             this.cardInfoTB3.Name = "cardInfoTB3";
@@ -382,7 +399,7 @@
             this.cardInfoLabel3.AutoSize = true;
             this.cardInfoLabel3.Font = new System.Drawing.Font("Noyh ", 11F);
             this.cardInfoLabel3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.cardInfoLabel3.Location = new System.Drawing.Point(30, 276);
+            this.cardInfoLabel3.Location = new System.Drawing.Point(30, 282);
             this.cardInfoLabel3.Name = "cardInfoLabel3";
             this.cardInfoLabel3.Size = new System.Drawing.Size(126, 21);
             this.cardInfoLabel3.TabIndex = 27;
@@ -390,6 +407,7 @@
             // 
             // cardInfoTB2
             // 
+            this.cardInfoTB2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cardInfoTB2.Font = new System.Drawing.Font("Noyh ", 11F);
             this.cardInfoTB2.Location = new System.Drawing.Point(30, 240);
             this.cardInfoTB2.Name = "cardInfoTB2";
@@ -402,7 +420,7 @@
             this.cardInfoLabel2.AutoSize = true;
             this.cardInfoLabel2.Font = new System.Drawing.Font("Noyh ", 11F);
             this.cardInfoLabel2.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.cardInfoLabel2.Location = new System.Drawing.Point(29, 211);
+            this.cardInfoLabel2.Location = new System.Drawing.Point(29, 217);
             this.cardInfoLabel2.Name = "cardInfoLabel2";
             this.cardInfoLabel2.Size = new System.Drawing.Size(109, 21);
             this.cardInfoLabel2.TabIndex = 25;
@@ -410,6 +428,7 @@
             // 
             // cardInfoTB1
             // 
+            this.cardInfoTB1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cardInfoTB1.Font = new System.Drawing.Font("Noyh ", 11F);
             this.cardInfoTB1.Location = new System.Drawing.Point(30, 179);
             this.cardInfoTB1.Name = "cardInfoTB1";
@@ -422,7 +441,7 @@
             this.cardInfoLabel1.AutoSize = true;
             this.cardInfoLabel1.Font = new System.Drawing.Font("Noyh ", 11F);
             this.cardInfoLabel1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.cardInfoLabel1.Location = new System.Drawing.Point(29, 145);
+            this.cardInfoLabel1.Location = new System.Drawing.Point(29, 151);
             this.cardInfoLabel1.Name = "cardInfoLabel1";
             this.cardInfoLabel1.Size = new System.Drawing.Size(114, 21);
             this.cardInfoLabel1.TabIndex = 23;
@@ -430,6 +449,7 @@
             // 
             // addressTB
             // 
+            this.addressTB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.addressTB.Font = new System.Drawing.Font("Noyh ", 11F);
             this.addressTB.Location = new System.Drawing.Point(31, 111);
             this.addressTB.Name = "addressTB";
@@ -442,7 +462,7 @@
             this.addressLabel.AutoSize = true;
             this.addressLabel.Font = new System.Drawing.Font("Noyh ", 11F);
             this.addressLabel.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.addressLabel.Location = new System.Drawing.Point(30, 82);
+            this.addressLabel.Location = new System.Drawing.Point(30, 88);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(72, 21);
             this.addressLabel.TabIndex = 15;
@@ -685,9 +705,21 @@
             this.cartPanel.Size = new System.Drawing.Size(1109, 550);
             this.cartPanel.TabIndex = 21;
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Noyh ", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(218)))), ((int)(((byte)(124)))));
+            this.label1.Location = new System.Drawing.Point(507, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 36);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "Cart";
+            // 
             // totalLabel
             // 
-            this.totalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalLabel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.totalLabel.AutoSize = true;
             this.totalLabel.Font = new System.Drawing.Font("Noyh ", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.totalLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(218)))), ((int)(((byte)(124)))));
@@ -699,6 +731,9 @@
             // 
             // cartGridView
             // 
+            this.cartGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cartGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(38)))), ((int)(((byte)(45)))));
             this.cartGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -738,7 +773,7 @@
             // 
             // removeCartButton
             // 
-            this.removeCartButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.removeCartButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.removeCartButton.BorderColor = System.Drawing.Color.Gray;
             this.removeCartButton.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(30)))), ((int)(((byte)(34)))));
             this.removeCartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -769,37 +804,9 @@
             this.productsPanel.Size = new System.Drawing.Size(1109, 550);
             this.productsPanel.TabIndex = 20;
             // 
-            // productsFlowLayout
-            // 
-            this.productsFlowLayout.Location = new System.Drawing.Point(12, 63);
-            this.productsFlowLayout.Name = "productsFlowLayout";
-            this.productsFlowLayout.Size = new System.Drawing.Size(1088, 480);
-            this.productsFlowLayout.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Noyh ", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(218)))), ((int)(((byte)(124)))));
-            this.label5.Location = new System.Drawing.Point(497, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(102, 36);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Orders";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Noyh ", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(218)))), ((int)(((byte)(124)))));
-            this.label1.Location = new System.Drawing.Point(507, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 36);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "Cart";
-            // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Noyh ", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(218)))), ((int)(((byte)(124)))));
@@ -808,6 +815,17 @@
             this.label2.Size = new System.Drawing.Size(130, 36);
             this.label2.TabIndex = 12;
             this.label2.Text = "Products";
+            // 
+            // productsFlowLayout
+            // 
+            this.productsFlowLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.productsFlowLayout.AutoScroll = true;
+            this.productsFlowLayout.Location = new System.Drawing.Point(12, 63);
+            this.productsFlowLayout.Name = "productsFlowLayout";
+            this.productsFlowLayout.Size = new System.Drawing.Size(1088, 480);
+            this.productsFlowLayout.TabIndex = 0;
             // 
             // customerForm
             // 
@@ -821,12 +839,12 @@
             this.Controls.Add(this.accountToolStrip);
             this.Controls.Add(this.logo);
             this.Controls.Add(this.topPanel);
-            this.Controls.Add(this.productsPanel);
+            this.Controls.Add(this.cartPanel);
             this.Controls.Add(this.ordersSidePanel);
+            this.Controls.Add(this.productsPanel);
             this.Controls.Add(this.productsFilterSidePanel);
             this.Controls.Add(this.cartSidePanel);
             this.Controls.Add(this.ordersPanel);
-            this.Controls.Add(this.cartPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "customerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
