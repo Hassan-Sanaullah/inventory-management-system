@@ -40,6 +40,13 @@ namespace inventory_system
             InitializeComponent();
         }
 
+        //the method below might cause errors
+        public string Text
+        {
+            get { return textBox1.Text; }
+            set { textBox1.Text = value; }
+        }
+
         #region -> Properties
         [Category("RJ Code Advance")]
         public Color BorderColor

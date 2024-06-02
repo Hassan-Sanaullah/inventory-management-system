@@ -162,6 +162,7 @@
             this.signUpButton.Text = "Sign up";
             this.signUpButton.TextColor = System.Drawing.Color.DarkGray;
             this.signUpButton.UseVisualStyleBackColor = true;
+            this.signUpButton.Click += new System.EventHandler(this.signUpButton_Click);
             // 
             // registerPasswordTB
             // 
@@ -390,6 +391,7 @@
             this.loginButton.Text = "Login";
             this.loginButton.TextColor = System.Drawing.Color.DarkGray;
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // loginPasswordTB
             // 
