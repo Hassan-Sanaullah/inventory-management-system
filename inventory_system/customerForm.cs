@@ -26,6 +26,7 @@ namespace inventory_system
             Application.Exit();
         }
 
+        //code for Cart button
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             LoadCartItems(userID);

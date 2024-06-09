@@ -150,7 +150,7 @@ namespace inventory_system
             return ordersTable;
         }
 
-        public void AddToCart(int userId, int productId, int quantity, decimal unitPrice, out string errorMessage)
+        public bool AddToCart(int userId, int productId, int quantity, decimal unitPrice, out string errorMessage)
         {
             errorMessage = "";
             decimal totalPrice = quantity * unitPrice; // Calculate total price
@@ -158,6 +158,27 @@ namespace inventory_system
             try
             {
                 OpenConnection();
+
+                // Check if stock is available
+                string stockQuery = "SELECT stock_quantity FROM products WHERE product_id = @ProductId";
+                SqlCommand stockCommand = new SqlCommand(stockQuery, connection);
+                stockCommand.Parameters.AddWithValue("@ProductId", productId);
+                int availableStock = (int)stockCommand.ExecuteScalar();
+
+                if (quantity > availableStock)
+                {
+                    errorMessage = "Insufficient stock quantity.";
+                    return false;
+                }
+
+                // Update stock quantity
+                string updateStockQuery = "UPDATE products SET stock_quantity = stock_quantity - @Quantity WHERE product_id = @ProductId";
+                SqlCommand updateStockCommand = new SqlCommand(updateStockQuery, connection);
+                updateStockCommand.Parameters.AddWithValue("@Quantity", quantity);
+                updateStockCommand.Parameters.AddWithValue("@ProductId", productId);
+                updateStockCommand.ExecuteNonQuery();
+
+                // Add to cart
                 string query = "INSERT INTO cart (user_id, product_id, quantity, unit_price, total_price) VALUES (@UserId, @ProductId, @Quantity, @UnitPrice, @TotalPrice)";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@UserId", userId);
@@ -166,16 +187,20 @@ namespace inventory_system
                 command.Parameters.AddWithValue("@UnitPrice", unitPrice);
                 command.Parameters.AddWithValue("@TotalPrice", totalPrice); // Pass calculated total price
                 command.ExecuteNonQuery();
+
+                return true;
             }
             catch (Exception ex)
             {
                 errorMessage = "Error adding product to cart: " + ex.Message;
+                return false;
             }
             finally
             {
                 CloseConnection();
             }
         }
+
 
         public List<CartItem> GetCartItems(int userId, out string errorMessage)
         {

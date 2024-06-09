@@ -43,26 +43,33 @@ namespace inventory_system
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            // Get user ID from your application's session or user authentication
-            int userId = customerForm.userID; // Implement this method to get the logged-in user ID
-
-            // Get product ID and other details from the form
-            int productId = product.ProductId;
-            int quantity = int.Parse(textBox1.Text); // Assuming txtQuantity is a TextBox for quantity input
-            decimal unitPrice = product.Price;
-
-            // Call the method to add the product to cart
-            string errorMessage;
-            customerAccessDB db = new customerAccessDB();
-            db.AddToCart(userId, productId, quantity, unitPrice, out errorMessage);
-
-            if (!string.IsNullOrEmpty(errorMessage))
+            try
             {
-                MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Get user ID from your application's session or user authentication
+                int userId = customerForm.userID; // Implement this method to get the logged-in user ID
+
+                // Get product ID and other details from the form
+                int productId = product.ProductId;
+                int quantity = int.Parse(textBox1.Text); // Assuming txtQuantity is a TextBox for quantity input
+                decimal unitPrice = product.Price;
+
+                // Call the method to add the product to cart
+                string errorMessage;
+                customerAccessDB db = new customerAccessDB();
+                db.AddToCart(userId, productId, quantity, unitPrice, out errorMessage);
+
+                if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Product added to cart successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch(Exception er)
             {
-                MessageBox.Show("Product added to cart successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
         }
     }
