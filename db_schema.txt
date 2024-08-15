@@ -1,0 +1,104 @@
+Schema:
+
+
+    Products Table:
+        ProductID: A unique identifier for each product. It serves as the primary key for the table.
+        ProductName: The name or title of the product.
+        Description: A description providing additional details or information about the product.
+        UnitPrice: The price of one unit of the product.
+        QuantityOnHand: The current quantity of the product available in inventory.
+        ReorderLevel: The minimum quantity of the product that triggers a reorder.
+        CategoryID: A foreign key referencing the primary key of the Categories table, indicating the category to which the product belongs.
+
+    Suppliers Table:
+        SupplierID: A unique identifier for each supplier, serving as the primary key.
+        SupplierName: The name of the supplier or vendor.
+        ContactName: The name of the primary contact person at the supplier's company.
+        Phone: The contact phone number of the supplier.
+        Email: The contact email address of the supplier.
+
+    Categories Table:
+        CategoryID: A unique identifier for each product category, serving as the primary key.
+        CategoryName: The name or label of the product category.
+
+    Transactions Table:
+        TransactionID: A unique identifier for each transaction, serving as the primary key.
+        TransactionType: Indicates the type of transaction (e.g., purchase, sale).
+        TransactionDate: The date and time when the transaction occurred.
+        ProductID: A foreign key referencing the primary key of the Products table, indicating the product involved in the transaction.
+        Quantity: The quantity of the product involved in the transaction.
+        UnitPrice: The unit price of the product at the time of the transaction.
+
+    Users Table:
+        UserID: A unique identifier for each user, serving as the primary key.
+        Username: The username used for authentication.
+        Password: The password associated with the user account.
+        Role: Indicates the role or level of access for the user (e.g., admin, employee).
+
+    InventoryLogs Table:
+        LogID: A unique identifier for each inventory log entry, serving as the primary key.
+        LogDate: The date and time when the inventory log entry was recorded.
+        ProductID: A foreign key referencing the primary key of the Products table, indicating the product associated with the inventory log entry.
+        QuantityAdded: The quantity of the product added to inventory in this log entry.
+        QuantityRemoved: The quantity of the product removed from inventory in this log entry.
+        Reason: A description or reason for the inventory change (e.g., received shipment, sold to customer).
+
+
+MySQL Code:
+
+-- Create Products Table
+CREATE TABLE Products (
+    ProductID INT AUTO_INCREMENT PRIMARY KEY,
+    ProductName VARCHAR(255),
+    Description TEXT,
+    UnitPrice DECIMAL(10, 2),
+    QuantityOnHand INT,
+    ReorderLevel INT,
+    CategoryID INT,
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+);
+
+-- Create Suppliers Table
+CREATE TABLE Suppliers (
+    SupplierID INT AUTO_INCREMENT PRIMARY KEY,
+    SupplierName VARCHAR(255),
+    ContactName VARCHAR(255),
+    Phone VARCHAR(20),
+    Email VARCHAR(255)
+);
+
+-- Create Categories Table
+CREATE TABLE Categories (
+    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryName VARCHAR(255)
+);
+
+-- Create Transactions Table
+CREATE TABLE Transactions (
+    TransactionID INT AUTO_INCREMENT PRIMARY KEY,
+    TransactionType ENUM('purchase', 'sale'),
+    TransactionDate DATETIME,
+    ProductID INT,
+    Quantity INT,
+    UnitPrice DECIMAL(10, 2),
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
+
+-- Create Users Table
+CREATE TABLE Users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(255),
+    Password VARCHAR(255),
+    Role VARCHAR(20)
+);
+
+-- Create InventoryLogs Table
+CREATE TABLE InventoryLogs (
+    LogID INT AUTO_INCREMENT PRIMARY KEY,
+    LogDate DATETIME,
+    ProductID INT,
+    QuantityAdded INT,
+    QuantityRemoved INT,
+    Reason TEXT,
+    FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
